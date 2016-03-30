@@ -1,0 +1,340 @@
+<!DOCTYPE html>
+<html ng-app="ShieldSure">
+
+<head>
+
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="description" content="">
+    <meta name="author" content="">
+
+    <title>Shieldsure</title>
+
+    <!-- Bootstrap Core CSS -->
+    <link href="app/css/bootstrap.min.css" rel="stylesheet">
+
+    <!-- Custom CSS -->
+    <link href="app/css/stylish-portfolio.css" rel="stylesheet">
+
+    <!-- Custom Fonts -->
+    <link href="app/css/font-awesome.min.css" rel="stylesheet" type="text/css">
+    <link href="http://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,700,300italic,400italic,700italic" rel="stylesheet" type="text/css">
+    
+    
+    <!-- Controllers -->
+      <script src="node_modules/angular/angular.js"></script>
+      <script src="https://cdnjs.cloudflare.com/ajax/libs/angular-ui-router/0.2.15/angular-ui-router.js"></script>
+    <script src="app/app.js"></script>
+     <script src="app/signup/signup-controller.js"></script>
+     <script src="node_modules/ng-file-upload/dist/ng-file-upload.js"></script>
+    <script src="node_modules/ng-file-upload/dist/ng-file-upload-all.js"></script>
+    <script src="node_modules/ng-file-upload/dist/ng-file-upload-shim.js"></script>
+      
+
+    <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
+    <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
+    <!--[if lt IE 9]>
+        <script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
+        <script src="https://oss.maxcdn.com/libs/respond.js/1.4.2/respond.min.js"></script>
+    <![endif]-->
+
+</head>
+
+<body ng-controller="SignupController">
+
+    <!-- Navigation -->
+    <a id="menu-toggle" href="#" class="btn btn-dark btn-lg toggle"><i class="fa fa-bars"></i></a>
+    <nav id="sidebar-wrapper">
+        <ul class="sidebar-nav">
+            <a id="menu-close" href="#" class="btn btn-light btn-lg pull-right toggle"><i class="fa fa-times"></i></a>
+            <li class="sidebar-brand">
+                <a href="#top"  onclick = $("#menu-close").click(); >Shieldsure</a>
+            </li>
+            <li>
+                <a href="#top" onclick = $("#menu-close").click(); >Home</a>
+            </li>
+            <li>
+                <a href="#about" onclick = $("#menu-close").click(); >About</a>
+            </li>
+            <li>
+                <a href="#services" onclick = $("#menu-close").click(); >Services</a>
+            </li>
+            <li>
+                <a href="#pricing" onclick = $("#menu-close").click(); >Pricing</a>
+            </li>
+            <li>
+                <a href="#contact" onclick = $("#menu-close").click(); >Contact</a>
+            </li>
+        </ul>
+    </nav>
+
+    <!-- Header -->
+    <header id="top" class="header">
+        <div class="text-vertical-center">
+            <img src="app/images/bbg.jpg" />
+            <br>
+            <a href="#about" class="btn btn-dark btn-lg">Find Out More</a>
+        </div>
+    </header>
+
+    <!-- About -->
+    <section id="about" class="about">
+        
+    </section>
+
+    <!-- Services -->
+    <!-- The circle icons use Font Awesome's stacked icon classes. For more information, visit http://fontawesome.io/examples/ -->
+    <section id="services" class="services bg-primary">
+        <div class="container">
+            <form class="form-horizontal" form name="userForm" ng-submit="submitForm(userForm.$valid)" novalidate>
+<fieldset>
+
+<!-- Form Name -->
+
+<!-- Text input-->
+<div class="form-group">
+  <label class="col-md-4 control-label" for="Name">Name</label>  
+  <div class="col-md-4">
+  <input type="text" ng-model="newUser.fullname" class="form-control" ng-maxlength="20" placeholder="Chuck" required>
+  <span>Enter your full name</span>  
+  </div>
+</div>
+
+
+<div class="form-group">
+  <label class="col-md-4 control-label" for="number">Mobile Number</label>  
+  <div class="col-md-4">
+  <input type="number" name="usermobnumber" class="form-control" ng-model="newUser.usermobnumber" ng-minlength="10" ng-maxlength="10" placeholder="9876543210" required>
+            <p ng-show="userForm.mobnumber.$error.minlength" class="help-block">Mobile Number is too short.</p>
+            <p ng-show="userForm.mobnumber.$error.maxlength" class="help-block">Mobile Number is too long.</p>
+           
+  </div>
+</div>  
+
+<!-- Text input-->
+<div class="form-group">
+  <label class="col-md-4 control-label" for="location">Location</label>  
+  <div class="col-md-4">
+  <input type="text" ng-model="newUser.useraddress" class="form-control" placeholder="221B, Baker Street" required>
+  <span>Help us find you</span>  
+  </div>
+</div>
+
+<!-- Text input-->
+<div class="form-group" ng-class="{ 'has-error' : userForm.email.$invalid && !userForm.email.$pristine }">
+  <label class="col-md-4 control-label" for="email">Email</label>  
+  <div class="col-md-4">
+  <input type="email" name="useremail" class="form-control" ng-model="newUser.useremail" placeholder="E.g. example@example.com" required>
+        <p ng-show="userForm.useremail.$invalid && !userForm.useremail.$pristine" class="help-block">Enter a valid email.</p>
+  <span >Get in touch</span>  
+  </div>
+</div>
+
+<!-- Select Basic -->
+<div class="form-group">
+  <label class="col-md-4 control-label" for="device list">Select device</label>
+  <div class="col-md-4">
+    <select id="typeofdevice" name="typeofdevice" class="form-control" ng-model="newUser.typeofdevice" required>
+      <option value="0">Please select your device</option>
+      <option value="Mobile">Mobile</option>
+      <option value="Tab">Tab</option>
+      <option value="Laptop">Laptop</option>
+      <option value="TV">TV</option>
+      <option value="Camera">Camera</option>
+    </select>
+    <span>Select device</span>
+  </div>
+</div>
+
+<!--Device range select -->
+<div class="form-group">
+    <label class="col-md-4 control-label" for="price range">Select device value range</label>
+    <div class="col-md-4">
+        <select id="rangeofdevice" name="rangeofdevice" class="form-control" ng-model="newUser.rangeofdevice" required>
+          <option value="0">select your device range</option>
+          <option value="500-5000">500-5000</option>
+          <option value="5001-10000">5001-10000</option>
+          <option value="10001-20000">10001-20000</option>
+          <option value="20001-50000">20001-50000</option>
+          <option value="50001-90000">50001-90000</option>
+          <option value="90001-130000">90001-130000</option>
+          <option value="130001-200000">130001-200000</option>
+          <option value="200001-300000">200001-300000</option>
+          <option value="300001-400000">300001-400000</option>
+          <option value="400001-500000">400001-500000</option>
+        </select>
+        <span></span>  
+    </div>
+</div>
+
+<!-- Button -->
+
+<div class="form-group">
+  
+  <p class="center"><button id="singlebutton" type="submit" ng-disabled="!userForm.$valid" name="singlebutton" class="btn btn-light">Get a quote</button></p>
+
+</div>
+
+
+</fieldset>
+</form>
+ 
+        </div>
+        <!-- /.container -->
+    </section>
+
+   
+    <!-- Portfolio -->
+    <section id="pricing" class="pricing">
+       <div id="pricing" class="container-fluid">
+  <div class="text-center">
+    <h2>Pricing</h2>
+    <h4>A product payment plan that works for you!</h4>
+  </div>
+  <div class="row slideanim">
+    <div class="col-sm-offset-4 col-sm-4 col-xs-12">
+      <div class="panel panel-default text-center">
+        <div class="panel-heading">
+          <h1>Basic</h1>
+        </div>
+        <div class="panel-body">
+          <p><strong>Within 20 Days</strong> of Purchase</p>
+          <p><strong>Accidental</strong> Damage</p>
+          <p><strong>Fire</strong> Damage</p>
+          <p><strong>Liquid</strong> Damage</p>
+          <p><strong>Physical</strong> Damage </p>
+        </div>
+        <div class="panel-footer" ng-if="newUser.rangeofdevice=='500-5000'">
+          <h3>299</h3>
+          <h4>per year</h4>
+         <a href="/" class="btn btn-lg">OK</a>
+        </div>
+           <div class="panel-footer" ng-if="newUser.rangeofdevice=='5001-10000'">
+          <h3>599</h3>
+          <h4>per year</h4>
+         <a href="/" class="btn btn-lg">OK</a>
+        </div>
+           <div class="panel-footer" ng-if="newUser.rangeofdevice=='10001-20000'">
+          <h3>1099</h3>
+          <h4>per year</h4>
+         <a href="/" class="btn btn-lg">OK</a>
+        </div>
+          <div class="panel-footer" ng-if="newUser.rangeofdevice=='20001-50000'">
+          <h3>1999</h3>
+          <h4>per year</h4>
+         <a href="/" class="btn btn-lg">OK</a>
+        </div>
+          <div class="panel-footer" ng-if="newUser.rangeofdevice=='50001-90000'">
+          <h3>2999</h3>
+          <h4>per year</h4>
+         <a href="/" class="btn btn-lg">OK</a>
+        </div>
+          <div class="panel-footer" ng-if="newUser.rangeofdevice=='90001-130000'">
+          <h3>3999</h3>
+          <h4>per year</h4>
+         <a href="/" class="btn btn-lg">OK</a>
+        </div>
+          <div class="panel-footer" ng-if="newUser.rangeofdevice=='130001-200000'">
+          <h3>4999</h3>
+          <h4>per year</h4>
+         <a href="/" class="btn btn-lg">OK</a>
+        </div>
+          <div class="panel-footer" ng-if="newUser.rangeofdevice=='200001-300000'">
+          <h3>5999</h3>
+          <h4>per year</h4>
+         <a href="/" class="btn btn-lg">OK</a>
+        </div>
+          <div class="panel-footer" ng-if="newUser.rangeofdevice=='300001-400000'">
+          <h3>6999</h3>
+          <h4>per year</h4>
+         <a href="/" class="btn btn-lg">OK</a>
+        </div>
+          <div class="panel-footer" ng-if="newUser.rangeofdevice=='400001-500000'">
+          <h3>7999</h3>
+          <h4>per year</h4>
+         <a href="/" class="btn btn-lg">OK</a>
+        </div>
+          
+      </div>      
+    </div>     
+      
+      
+  </div>
+</div>
+        
+    </section>
+
+ 
+    
+
+    <!-- Footer -->
+    <footer>
+        <section id="contact" class="contact">
+        <div class="container">
+            <div class="row">
+                <div class="col-lg-10 col-lg-offset-1 text-center">
+                    <h4><strong>ShieldSure</strong>
+                    </h4>
+                    <p>Thane<br>India</p>
+                    <ul class="list-unstyled">
+                        <li><i class="fa fa-phone fa-fw"></i> 8451962001, 8451962002</li>
+                        <li><i class="fa fa-envelope-o fa-fw"></i>  <a href="mailto:contactus@shieldsure.com">contactus@shieldsure.com</a>
+                        </li>
+                    </ul>
+                    <br>
+                   
+                    <hr class="small">
+                    <p class="text-muted">Copyright &copy; Shieldsure.com 2016</p>
+                </div>
+            </div>
+        </div>
+        </section>
+    </footer>
+
+    <!-- jQuery -->
+    <script src="app/js/jquery.js"></script>
+
+    <!-- Bootstrap Core JavaScript -->
+    <script src="app/js/bootstrap.min.js"></script>
+
+    <!-- Custom Theme JavaScript -->
+    <script>
+    // Closes the sidebar menu
+    $("#menu-close").click(function(e) {
+        e.preventDefault();
+        $("#sidebar-wrapper").toggleClass("active");
+    });
+
+    // Opens the sidebar menu
+    $("#menu-toggle").click(function(e) {
+        e.preventDefault();
+        $("#sidebar-wrapper").toggleClass("active");
+    });
+
+    // Scrolls to the selected menu item on the page
+    $(function() {
+        $('a[href*=#]:not([href=#])').click(function() {
+            if (location.pathname.replace(/^\//, '') == this.pathname.replace(/^\//, '') || location.hostname == this.hostname) {
+
+                var target = $(this.hash);
+                target = target.length ? target : $('[name=' + this.hash.slice(1) + ']');
+                if (target.length) {
+                    $('html,body').animate({
+                        scrollTop: target.offset().top
+                    }, 1000);
+                    return false;
+                }
+            }
+        });
+    });
+    </script>
+    
+
+   
+	
+    
+    
+</body>
+
+</html>
